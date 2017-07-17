@@ -1,0 +1,23 @@
+import org.jpragey.cmarkplugin.HtmlEnvironment;
+
+plugins {
+    id "commonmark"
+}
+
+
+commonmark {
+	
+	String templateText = new File(projectDir, "doc/templates/template.html").text;
+	def template = new groovy.text.SimpleTemplateEngine()
+					.createTemplate(templateText)
+	
+	sourceDir= new File(projectDir, "doc/src")
+
+	htmlBuilder = { HtmlEnvironment env ->
+		return template
+				.make([
+					"pathToRoot":env.pathToRoot,
+					"htmlContent":env.htmlContent])
+				.toString();
+	}
+}

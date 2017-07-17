@@ -1,0 +1,26 @@
+//import org.jpragey.cmarkplugin.HtmlEnvironment;
+
+plugins {
+    id "commonmark"
+}
+
+
+commonmark {
+	
+	htmlBuilder = { org.jpragey.cmarkplugin.HtmlEnvironment env ->
+		return """<html>
+<head>
+""" +
+	'''<link rel="stylesheet" href="''' + env.pathToRoot + 'resources/main.css">'+
+'''</head>
+		</body>
+		''' +
+env.htmlContent +
+'''<hr/>
+		<div id="footer">(c) 2017 JobX</div>
+		</body></html>
+		'''
+
+	}
+	
+}
