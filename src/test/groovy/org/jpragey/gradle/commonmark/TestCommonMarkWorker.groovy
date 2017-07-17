@@ -1,4 +1,4 @@
-package org.jpragey.cmarkplugin
+package org.jpragey.gradle.commonmark
 
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue
 import spock.lang.Specification
 
 import org.commonmark.Extension
-
+import org.jpragey.gradle.commonmark.CommonMarkWorker
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 

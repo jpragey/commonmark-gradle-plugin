@@ -1,4 +1,4 @@
-package org.jpragey.cmarkplugin
+package org.jpragey.gradle.commonmark
 
 interface HtmlEnvironment {
 

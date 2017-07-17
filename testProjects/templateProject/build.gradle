@@ -1,4 +1,4 @@
-import org.jpragey.cmarkplugin.HtmlEnvironment;
+import org.jpragey.gradle.commonmark.HtmlEnvironment;
 
 plugins {
     id "commonmark"

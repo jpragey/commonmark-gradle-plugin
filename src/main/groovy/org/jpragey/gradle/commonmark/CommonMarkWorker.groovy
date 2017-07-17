@@ -1,4 +1,4 @@
-package org.jpragey.cmarkplugin
+package org.jpragey.gradle.commonmark
 
 import java.io.File
 import java.nio.file.Files

@@ -24,7 +24,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.jpragey.cmarkplugin:commonmark:0.1.0'
+        classpath 'org.jpragey.gradle.commonmark:commonmark-gradle-plugin:0.1.0'
     }
 }
 apply plugin: 'commonmark'

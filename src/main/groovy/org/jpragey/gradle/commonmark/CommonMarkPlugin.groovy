@@ -1,4 +1,4 @@
-package org.jpragey.cmarkplugin
+package org.jpragey.gradle.commonmark
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

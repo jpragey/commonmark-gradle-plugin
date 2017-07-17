@@ -1,4 +1,4 @@
-package org.jpragey.cmarkplugin
+package org.jpragey.gradle.commonmark
 
 import org.commonmark.Extension
 import org.commonmark.node.*
