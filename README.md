@@ -1,9 +1,20 @@
 # Gradle CommonMark Plugin
 
 A [Gradle](https://gradle.org) plugin for compiling [CommonMark](http://commonmark.org) markdown files, based on it [commonmark-java implementation][commonmark-java-implementation].
+It's published under Apache Licence 2.0.
 
 It basically copies recursively a source directory (`doc` by default) to an output directory (`$buildDir/gen-doc` by default), translating 
 on-the-fly files which name end with '.md'.
+
+## Compiling from source
+
+You need Java 1.8, some not too old git, and gradle 4.0.1 or later:
+
+``` shell
+git clone https://github.com/jpragey/commonmark-gradle-plugin
+cd commonmark-gradle-plugin/
+gradle clean check install
+```
 
 ## Quickstart
 
@@ -57,15 +68,11 @@ commonmark {
 ## <a name="customizing"></a>Customizing output files 
 
 The CommonMark plugin let you customize the HTML files (eg to add CSS, page header/footer, etc)
-with the `htmlConfig` property. It must be an object that implements the `org.jpragey.cmarkplugin.HtmlConfig`
-interface; its only method must convert a bunch of plugin-provided values (among which the markdown HTML)
-to an HTML string, that will be dumped to the output HTML file.
+with the `htmlBuilder` property. It must be a closure taking a `org.jpragey.gradle.commonmark.HtmlEnvironment` parameter and returning the output HTML as a String. An `HtmlEnvironment` provides a few properties relevant for creating an output HTML file, eg the markdown HTML itself.
 
 So you are free to use whatever method you like to render the output file. Here is an example based on groovy
 standard [SimpleTemplateEngine](http://docs.groovy-lang.org/latest/html/api/groovy/text/SimpleTemplateEngine.html), 
-that reads a template file `doc/templates/template.html`
-and replaces `$htmlContent` by the html from the markdown file, and `$pathToRoot` by an '../' sequence 
-up to the root directory (see below).  
+that reads a template file `doc/templates/template.html`and replaces `$htmlContent` by the html from the markdown file, and `$pathToRoot` by an '../' sequence up to the root directory (see below).  
 
 ``` groovy
 import org.jpragey.cmarkplugin.HtmlEnvironment;
