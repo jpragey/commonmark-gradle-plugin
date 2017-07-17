@@ -5,16 +5,21 @@ import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 import java.util.List
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.commonmark.node.*
 import org.commonmark.parser.Parser
 import org.commonmark.parser.block.AbstractBlockParser
 import org.commonmark.renderer.html.HtmlRenderer
+import org.gradle.api.GradleException
 
 import groovy.lang.Closure
 
 import org.commonmark.Extension
 
 class CommonMarkWorker {
+	
+	Logger logger = LoggerFactory.getLogger("org.jpragey.cmarkplugin")
 	
 	Closure<String> htmlBuilder = null
 	
@@ -33,6 +38,8 @@ class CommonMarkWorker {
 	}
 
 	def compileMarkdown(File markdownFile, String mdFileNameRoot, File targetDir, int level) {
+		logger.debug("Compiling Markdown file ${markdownFile}")
+		
 		File targetFile = new File(targetDir, mdFileNameRoot + '.html')
 		
 		try {
@@ -83,13 +90,20 @@ class CommonMarkWorker {
 			
 			writer.close()
 		} catch (IOException e) {
-			// TODO
+				throw new GradleException("Error while compiling ${markdownFile}", e)
+			throw e
 		}
 	}
 
 	def compileDirectory(File sourceDir, File targetDir, int level) {
+		logger.debug("Compiling directory ${sourceDir}")
+		
 		targetDir.mkdirs()
 		for(File file: sourceDir.listFiles()) {
+			if(file == null) {
+				throw new GradleException("Can't get directory ${sourceDir.absolutePath} content.")
+			}
+	
 			if(file.isFile()) {
 				
 				String fileName = file.getName();
@@ -107,6 +121,12 @@ class CommonMarkWorker {
 	}
 
 	def action() {
+		if(!sourceDir.isDirectory()) {
+			throw new GradleException("${sourceDir.absolutePath} is not a directory.")
+		}
+		
+		logger.info("Compiling doc directory ${sourceDir} to ${genDir}")
+
 		compileDirectory(sourceDir, genDir, 0)
 	}
 
