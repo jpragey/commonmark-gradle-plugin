@@ -57,7 +57,13 @@ by its `cmarkExtensions` property.
  
 
 ``` groovy
-
+buildscript {
+    ...
+    dependencies {
+		 ...
+         classpath 'com.atlassian.commonmark:commonmark-ext-gfm-tables:0.9.0'
+    }
+}
 commonmark {
     cmarkExtensions = Arrays.asList(
         org.commonmark.ext.gfm.tables.TablesExtension.create()
@@ -75,7 +81,7 @@ standard [SimpleTemplateEngine](http://docs.groovy-lang.org/latest/html/api/groo
 that reads a template file `doc/templates/template.html`and replaces `$htmlContent` by the html from the markdown file, and `$pathToRoot` by an '../' sequence up to the root directory (see below).  
 
 ``` groovy
-import org.jpragey.cmarkplugin.HtmlEnvironment;
+import org.jpragey.gradle.commonmark.HtmlEnvironment;
 
 commonmark {
     
