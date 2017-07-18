@@ -8,7 +8,7 @@ on-the-fly files which name end with '.md'.
 
 ## Compiling from source
 
-You need Java 1.8, some not too old git, and gradle 4.0.1 or later:
+You need Java 1.8, some not too old git, and gradle 3.5.1 or later:
 
 ``` shell
 git clone https://github.com/jpragey/commonmark-gradle-plugin
@@ -128,29 +128,29 @@ which is exactly what we need.
 
 ### HtmlEnvironment properties
 
-htmlContent (String)
+**htmlContent** (String)
 : the markdown input, translated to HTML.
 
-level (int)
+**level** (int)
 : depth of source file, relative to `sourceDir` directory (0 for sourceDir).
 
-pathToRoot (String)
+**pathToRoot** (String)
 : contains a sequence of `level` '../'. It is useful to create path to the root directory, whatever the doc file depth.
-See [customizing](#customiSzing).   
+See [customizing](#customizing).   
 
 
 
 ## Task properties
-sourceDir (Groovy [File](http://docs.groovy-lang.org/latest/html/groovy-jdk/java/io/File.html))
+**sourceDir** (Groovy [File](http://docs.groovy-lang.org/latest/html/groovy-jdk/java/io/File.html))
 : Source directory, `$projectDir/doc` by default.
 
-outputDir (Groovy [File](http://docs.groovy-lang.org/latest/html/groovy-jdk/java/io/File.html))
+**outputDir** (Groovy [File](http://docs.groovy-lang.org/latest/html/groovy-jdk/java/io/File.html))
 : directory where the files will be copied or translated, `$buildDir/gen-doc` by default. 
 
-htmlConfig (org.jpragey.cmarkplugin.HtmlConfig)
+**htmlConfig** (org.jpragey.cmarkplugin.HtmlConfig)
 : output HTML customizer. If null (by default), very simple HTML pages will be created. See [customizing](#customizing).
 
-cmarkExtensions (List<org.commonmark.Extension>)
+**cmarkExtensions** (List<org.commonmark.Extension>)
 : List of java-commonmark extension (eg if you need tables). See [extensions](#extensions).
 
 
